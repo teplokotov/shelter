@@ -5,45 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cozy House</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="../../assets//icons/favicon.ico">
 </head>
-<body>
+<body class="body">
   <header class="header">
-    <div class="container">
+    <div class="container container">
       <div class="header-container">
-        <a class="header-logo" href="">
-          <img src="../../assets/images/logo.svg" alt="Cozy House">
-        </a>
+        <a class="header-logo" aria-label="Cozy House logo"></a>
         <nav class="nav">
           <ul class="nav-list">
-            <li class="nav-item selected"><a href="">About the shelter</a></li>
-            <li class="nav-item"><a href="">Our pets</a></li>
-            <li class="nav-item"><a href="">Help the shelter</a></li>
-            <li class="nav-item"><a href="">Contacts</a></li>
+            <li class="nav-item">
+              <a class="nav-item-link nav-item-link-selected">About the shelter</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item-link" href="">Our pets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item-link" href="">Help the shelter</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-item-link" href="">Contacts</a>
+            </li>
           </ul>
         </nav>
+      </div>
+      <div class="not-only-container">
+        <div class="not-only-left-block">
+          <h1 class="not-only-heading">Not only people need a house</h1>
+          <p class="not-only-description">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
+          <button class="button not-only-button" type="button">Make a friend</button>
+        </div>
+        <div class="not-only-right-block">
+          <img class="not-only-image" src="../../assets/images/start-screen-puppy.png" alt="Puppy">
+        </div>
       </div>
     </div>
   </header>
   <main>
-    <section class="not-only">
-      <div class="container">
-        <div class="not-only-container">
-          <div class="not-only-left-block">
-            <h1 class="not-only-heading">Not only people need a house</h1>
-            <p class="not-only-description">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
-            <button class="button">Make a friend</button>
-          </div>
-          <div class="not-only-right-block">
-            <img src="../../assets/images/start-screen-puppy.png" alt="Puppy">
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="about">
       <div class="container">
         <div class="about-container">
           <div class="about-left-block">
-            <img src="../../assets/images/about-pets.png" alt="Pets">
+            <img class="about-image" src="../../assets/images/about-pets.png" alt="Pets">
           </div>
           <div class="about-right-block">
             <h2 class="about-heading">About the shelter “Cozy House”</h2>
@@ -56,33 +59,33 @@
     <section class="our-friends">
       <div class="container">
         <div class="our-friends-container">
-          <h2>Our friends who are looking for a house</h2>
+          <h2 class="our-friends-heading">Our friends who are looking for a house</h2>
           <div class="slider-container">
-            <button class="slider-left-btn">Left</button>
+            <button class="slider-btn slider-btn-left" type="button"></button>
             <ul class="slider-list">
               <li class="slider-item">
                 <img class="slider-item-image" src="../../assets/images/pets-katrine.png" alt="Katrine">
                 <div class="slider-item-description">
                   <p class="slider-item-name">Katrine</p>
-                  <button class="slider-btn">Learn more</button>
+                  <button class="button button-light" type="button">Learn more</button>
                 </div>
               </li>
               <li class="slider-item">
                 <img class="slider-item-image" src="../../assets/images/pets-jennifer.png" alt="Jennifer">
                 <div class="slider-item-description">
                   <p class="slider-item-name">Jennifer</p>
-                  <button class="slider-btn">Learn more</button>
+                  <button class="button button-light" type="button">Learn more</button>
                 </div>
               </li>
               <li class="slider-item">
                 <img class="slider-item-image" src="../../assets/images/pets-woody.png" alt="Woody">
                 <div class="slider-item-description">
                   <p class="slider-item-name">Woody</p>
-                  <button class="slider-btn">Learn more</button>
+                  <button class="button button-light" type="button">Learn more</button>
                 </div>
               </li>
             </ul>
-            <button class="slider-right-btn">Right</button>
+            <button class="slider-btn slider-btn-right" type="button" type="button"></button>
           </div>
           <button class="button button-pets">Get to know the rest</button>
         </div>

@@ -1,0 +1,371 @@
+/* normalize.css */
+@import url(../../assets/vendor/normalize.css);
+
+html {
+  scroll-behavior: smooth;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Header and "not-only" block */
+
+.header {
+  background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+}
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 40px 0 40px;
+}
+
+.header-logo {
+  width: 184px;
+  height: 60px;
+  background-image: url(../../assets/images/logo.svg);
+}
+
+.nav-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  gap: 35px;
+}
+
+.nav-item-link {
+  display: block;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #CDCDCD;
+  text-decoration: none;
+}
+
+.nav-item-link:hover {
+  color: #FAFAFA;
+}
+
+.nav-item-link-selected {
+  color: #FAFAFA;
+  border-bottom: 3px solid #F1CDB3;
+  cursor: default;
+}
+
+.not-only-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.not-only-left-block {
+  padding-right: 42px;
+  min-width: 310px;
+  width: 460px;
+}
+
+.not-only-heading {
+  margin: 0;
+  max-width: 310px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 130%;
+  color: #FFFFFF;
+}
+
+.not-only-description {
+  margin: 0;
+  padding-top: 42px;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  color: #CDCDCD;
+}
+
+.not-only-right-block {
+  padding-top: 90px;
+  max-width: 698px;
+  display: flex;
+  align-items: end;
+}
+
+.not-only-image {
+  width: 100%;
+  object-fit: contain;
+}
+
+.not-only-button {
+  margin-top: 42px;
+}
+
+.button {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border: none;
+  background: #F1CDB3;
+  border-radius: 100px;
+  padding: 15px 45px;
+  width: fit-content;
+  height: 52px;
+}
+
+.button:hover {
+  background: #FDDCC4;
+}
+
+.button-light {
+  background: #FAFAFA;
+  border: 2px solid #F1CDB3;
+}
+
+.button-light:hover {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+
+/* Section "about" */
+
+.about-container {
+  padding: 80px 40px 100px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 120px;
+}
+
+.about-left-block {
+  max-width: calc(50% - 5px);
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+}
+
+.about-right-block {
+  max-width: calc(50% + 5px);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.about-heading {
+  margin: 0;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  max-width: 370px;
+}
+
+.about-description {
+  margin: 0;
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  color: #4C4C4C;
+}
+
+/* Section "our-friends" */
+
+.our-friends-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: center;
+}
+
+.our-friends {
+  background: #F6F6F6;
+  padding: 80px 40px 100px 40px;
+}
+
+.our-friends-heading {
+  margin: 0;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  max-width: 400px;
+  text-align: center;
+}
+
+.slider-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.slider-list {
+  margin: 0;
+  padding: 0;
+  /* padding-left: 12px;
+  padding-right: 12px; */
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 90px;
+  width: 100%;
+  max-width: 990px;
+  max-height: 435px;
+  overflow: hidden;
+}
+
+.slider-item {
+  background-color: #FAFAFA;
+  border-radius: 9px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.slider-item:hover .button-light {
+  background: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+
+.slider-item-image {
+  width: 270px;
+  height: 270px;
+}
+
+.slider-item-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0;
+  gap: 30px;
+}
+
+.slider-item-name {
+  margin: 0;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.slider-btn {
+  box-sizing: border-box;
+  padding: 23px 19px;
+  border: 2px solid #F1CDB3;
+  border-radius: 100px;
+  background-color: transparent;
+  cursor: pointer;
+  min-width: 52px;
+  min-height: 52px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px 6px;
+}
+
+.slider-btn:hover {
+  background-color: #FDDCC4;
+  border: 2px solid #FDDCC4;
+}
+
+.slider-btn-left {
+  background-image: url(../../assets/icons/arrow.svg);
+}
+
+.slider-btn-right {
+  background-image: url(../../assets/icons/arrow.svg);
+  transform: rotate(180deg);
+}
+
+/* Section "help" */
+
+.help-container {
+  padding: 80px 40px 100px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help-heading {
+  margin: 0;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  text-align: center;
+  color: #545454;
+  max-width: 308px;
+}
+
+.help-list {
+  margin: 0;
+  padding: 60px 0 0 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 55px 120px;
+}
+
+.help-item {
+  text-align: center;
+}
+
+.help-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.help-description {
+  margin: 0;
+  padding-top: 30px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+
+
+/* Section "in-addition" */
+/* Footer */
