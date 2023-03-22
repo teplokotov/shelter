@@ -346,6 +346,7 @@ html {
 
 .help-item {
   text-align: center;
+  /* min-width: 170px; */
 }
 
 .help-icon {
@@ -365,7 +366,92 @@ html {
   color: #545454;
 }
 
-
-
 /* Section "in-addition" */
+.in-addition {
+  background: #F6F6F6;
+}
+
+.in-addition-container {
+  padding: 80px 40px 100px 40px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 915px;
+  margin: 0 auto;
+}
+
+.in-addition-left-block {
+  max-width: 505px;
+}
+
+.in-addition-img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.in-addition-right-block {
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.in-addition-heading {
+  margin: 0;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+  max-width: 300px;
+}
+
+.in-addition-subheading {
+  margin: 0;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.in-addition-card-icon {
+  width: 30px;
+  height: 23px;
+}
+
+.in-addition-card {
+  display: flex;
+  padding: 10px 15px;
+  gap: 15px;
+  max-width: fit-content;
+  background: #F1CDB3;
+  border-radius: 9px;
+}
+
+.in-addition-card-number {
+  margin: 0;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.in-addition-legal {
+  margin: 0;
+  font-family: 'Arial';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #B2B2B2;
+}
+
 /* Footer */
