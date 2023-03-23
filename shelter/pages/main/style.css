@@ -455,3 +455,73 @@ html {
 }
 
 /* Footer */
+
+.footer {
+  background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 40px 0 40px;
+  align-items: flex-start;
+}
+
+.footer-heading {
+  margin: 0;
+  padding-top: 16px;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+}
+
+.footer-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-list-left {
+  padding-top: 40px;
+  gap: 40px;
+}
+
+.footer-list-center {
+  padding-top: 34px;
+  gap: 32px;
+}
+
+.footer-left {
+  max-width: 279px;
+}
+
+.footer-center {
+  max-width: 302px;
+}
+
+.footer-list-text {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: fit-content;
+  opacity: 1;
+  transition: opacity 0.2s linear;
+}
+
+.footer-list-text:hover {
+  opacity: 0.6;
+}
