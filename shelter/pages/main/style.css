@@ -54,6 +54,7 @@ html {
   line-height: 24px;
   color: #CDCDCD;
   text-decoration: none;
+  transition: color 0.3s linear;
 }
 
 .nav-item-link:hover {
@@ -130,6 +131,7 @@ html {
   padding: 15px 45px;
   width: fit-content;
   height: 52px;
+  transition: all 0.3s linear;
 }
 
 .button:hover {
@@ -296,6 +298,7 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 14px 6px;
+  transition: all 0.3s linear;
 }
 
 .slider-btn:hover {
@@ -431,6 +434,7 @@ html {
   max-width: fit-content;
   background: #F1CDB3;
   border-radius: 9px;
+  cursor: default;
 }
 
 .in-addition-card-number {
