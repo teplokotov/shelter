@@ -24,6 +24,10 @@ html {
   background: url(../../assets/images/noise_transparent@2x.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 
+.header-white{
+  background: none;
+}
+
 .header-container{
   display: flex;
   justify-content: space-between;
@@ -31,10 +35,18 @@ html {
   padding: 30px 40px 0 40px;
 }
 
+.header-container-white{
+  padding-bottom: 30px;
+}
+
 .header-logo {
   width: 184px;
   height: 60px;
   background-image: url(../../assets/images/logo.svg);
+}
+
+.header-logo-black {
+  background-position-x: -184px;
 }
 
 .nav-list {
@@ -65,6 +77,18 @@ html {
   color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
   cursor: default;
+}
+
+.header-container-white .nav-item-link {
+  color: #545454;
+}
+
+.header-container-white .nav-item-link:hover {
+  color: #292929;
+}
+
+.header-container-white .nav-item-link-selected:hover {
+  color: #545454;
 }
 
 .not-only-container {
@@ -205,6 +229,10 @@ html {
   padding: 80px 40px 100px 40px;
 }
 
+.our-friends-all .our-friends-container {
+  padding: 80px 40px 98px 40px;
+}
+
 .our-friends {
   background: #F6F6F6;
 }
@@ -242,6 +270,12 @@ html {
   max-width: 990px;
   max-height: 435px;
   overflow: hidden;
+}
+
+.our-friends-all .slider-list {
+  gap: 30px 40px;
+  max-width: 1200px;
+  max-height: 100%;
 }
 
 .slider-item {
@@ -284,6 +318,11 @@ html {
   color: #545454;
 }
 
+.slider-pagination {
+  display: flex;
+  gap: 20px;
+}
+
 .slider-btn {
   box-sizing: border-box;
   padding: 23px 19px;
@@ -291,17 +330,37 @@ html {
   border-radius: 100px;
   background-color: transparent;
   cursor: pointer;
-  min-width: 52px;
-  min-height: 52px;
+  width: 52px;
+  height: 52px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 14px 6px;
   transition: all 0.3s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #292929;
 }
 
 .slider-btn:hover {
   background-color: #FDDCC4;
   border: 2px solid #FDDCC4;
+}
+
+.slider-btn:disabled {
+  border-color: #CDCDCD;
+  color: #CDCDCD;
+}
+
+.slider-btn:disabled:hover {
+  background-color: transparent;
+  cursor: default;
 }
 
 .slider-btn-left {
@@ -311,6 +370,12 @@ html {
 .slider-btn-right {
   background-image: url(../../assets/icons/arrow.svg);
   transform: rotate(180deg);
+}
+
+.slider-btn-selected {
+  background-color: #FDDCC4;
+  border: 2px solid #FDDCC4;
+  cursor: default;
 }
 
 /* Section "help" */
