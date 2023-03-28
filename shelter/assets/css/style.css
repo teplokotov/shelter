@@ -526,9 +526,15 @@ html {
   padding: 10px 15px;
   gap: 15px;
   max-width: fit-content;
-  background: #F1CDB3;
+  background-color: #F1CDB3;
   border-radius: 9px;
-  cursor: default;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s linear;
+}
+
+.in-addition-card:hover {
+  background-color: #FDDCC4;
 }
 
 .in-addition-card-number {
