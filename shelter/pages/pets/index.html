@@ -16,12 +16,16 @@
           <p class="header-logo-name">Cozy House</p>
           <p class="header-logo-description">Shelter for pets in Boston</p>
         </a>
-        <div class="toggle-btn">
+        <div class="toggle-btn" onclick="document.querySelector('.nav').classList.toggle('opened');
+                                         document.querySelector('.toggle-btn').classList.toggle('opened');
+                                         document.querySelector('.body').classList.toggle('body-fixed');
+                                         document.querySelector('.overlay').classList.toggle('show');">
           <div class="toggle-btn-line line-1"></div>
           <div class="toggle-btn-line line-2"></div>
           <div class="toggle-btn-line line-3"></div>
         </div>
         <nav class="nav">
+          <div class="nav-mask"></div>
           <ul class="nav-list">
             <li class="nav-item">
               <a class="nav-item-link" href="../main/index.html">About the shelter</a>
@@ -151,5 +155,6 @@
       </div>
     </div>
   </footer>
+  <div class="overlay"></div>
 </body>
 </html>

@@ -791,6 +791,9 @@ html {
     position: fixed;
     top: 0;
   }
+  .header-container-white .nav-mask {
+    background-color: #fff;
+  }
   .not-only-container {
     padding: 0 10px;
   }
@@ -1008,6 +1011,9 @@ html {
     overflow: auto;
     z-index: 1;
     transition: right 0.3s linear;
+  }
+  .header-container-white .nav {
+    background-color: #fff;
   }
   .nav-list {
     height: 100%;
