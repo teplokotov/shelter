@@ -13,6 +13,10 @@ html {
   margin: 0 auto;
 }
 
+.body-fixed {
+  overflow: hidden;
+}
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -642,6 +646,22 @@ html {
   opacity: 0.6;
 }
 
+.overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(41, 41, 41, 0.6);
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+}
+.overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+
 @media (width < 1280px) {
   .our-friends-container {
     padding-right: 30px;
@@ -764,6 +784,13 @@ html {
   .nav {
     display: none;
   }
+  .nav-mask {
+    background-color: #292929;
+    width: 100%;
+    height: 90px;
+    position: fixed;
+    top: 0;
+  }
   .not-only-container {
     padding: 0 10px;
   }
@@ -779,15 +806,23 @@ html {
     justify-content: center;
     gap: 8px;
     width: 30px;
-    height: 22px;
+    height: 30px;
     cursor: pointer;
-    user-select: none;
+    z-index: 2;
+    transition: transform 0.3s linear;
   }
+
+  .toggle-btn.opened {
+    transform: rotate(90deg);
+  }
+
   .toggle-btn-line {
     width: 100%;
     height: 2px;
     background: #F1CDB3;
+    z-index: 2;
   }
+
   .header-container-white .toggle-btn-line {
     background: #000;
   }
@@ -961,10 +996,46 @@ html {
   .our-friends-all .slider-item:nth-child(6), .our-friends-all .slider-item:nth-child(5), .our-friends-all .slider-item:nth-child(4) {
     display: none;
   }
+  /* Sidebar */
+  .nav {
+    display: block;
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: #292929;
+    overflow: auto;
+    z-index: 1;
+    transition: right 0.3s linear;
+  }
+  .nav-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    min-height: 382px;
+  }
+  .nav-item-link {
+    font-size: 32px;
+    line-height: 160%;
+  }
+  .nav.opened {
+    right: 0;
+  }
 }
 
 @media (max-width: 320px) {
   .help-list {
     justify-content: normal;
+  }
+}
+
+@media (max-height: 490px) {
+  .nav {
+    padding-top: 90px;
+    height: calc(100vh - 90px);
   }
 }
