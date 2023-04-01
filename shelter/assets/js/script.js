@@ -17,6 +17,14 @@ const sliderBtnRight = document.querySelector('.slider-btn-right');
 const sliderBtnLeft = document.querySelector('.slider-btn-left');
 let memOfCards = [];
 let newCards = [];
+const param = {
+                1280: {maxCards: 3, width: 1080},
+                768: {maxCards: 2, width: 620},
+                320: {maxCards: 1, width: 310}
+              };
+let memOfWindowSize = window.innerWidth;
+
+// ----------- Sidebar -----------
 
 // Opening and closing sidebar
 function toggleSidebar() {
@@ -49,7 +57,21 @@ function arrOfRandNum(size, exceptions) {
   return result;
 }
 
-//console.log(arrOfRandNum(9));
+// ----------- Slider -----------
+
+// Initial
+removeAllCards();
+addCardsAfter(param[getBp()].maxCards);
+
+// Listener: Changing initial set of cards depending on the screen width
+window.addEventListener('resize', function(evt) {
+  if (window.innerWidth !== memOfWindowSize) {
+    sliderList.style.transform = 'translateX(0)';
+    removeAllCards();
+    addCardsAfter(param[getBp()].maxCards);
+    memOfWindowSize = window.innerWidth;
+  }
+});
 
 // Creating card from template
 function createCard(name, link, id) {
@@ -70,7 +92,6 @@ function createCards(num) {
     return createCard(pets[item].name, pets[item].img, item);
   });
 }
-//console.log(createCards(9));
 
 // Removimg all cards
 function removeAllCards() {
@@ -78,7 +99,6 @@ function removeAllCards() {
     sliderList.removeChild(sliderList.firstChild);
   }
 }
-removeAllCards();
 
 // Adding cards to DOM after another
 function addCardsAfter(num) {
@@ -94,21 +114,12 @@ function addCardsBefore(num) {
   });
 }
 
-// Написать функцию, которая добавляет начальные карты в зависимости от разрешения !!
-addCardsAfter(3);
-
 // Getting current value of translateX
 function getTranslateX(element) {
   const style = window.getComputedStyle(element);
   const matrix = new DOMMatrixReadOnly(style.transform);
   return matrix.m41;
 }
-
-const param = {
-                1280: {maxCards: 3, width: 1080},
-                768: {maxCards: 2, width: 1080}, // исправить width
-                320: {maxCards: 1, width: 1080} // исправить width
-              };
 
 // Getting breakpoint of window
 function getBp() {
@@ -124,6 +135,7 @@ function makeTranslate(sign, getWidth) {
   sliderList.style.transform = 'translateX(' + setPos + 'px)';
 }
 
+// Listener: Translate cards to the right depending on the button click
 sliderBtnRight.addEventListener('click', (evt) => {
   const curBreakpoint = getBp();
   const getWidth = param[curBreakpoint].width;
@@ -133,9 +145,8 @@ sliderBtnRight.addEventListener('click', (evt) => {
     addCardsAfter(maxCards);
     makeTranslate(-1, getWidth);
   } else {
-
     if (sliderList.childElementCount == maxCards * 2 && getTranslateX(sliderList) == 0) {
-      sliderList.style.transform = 'translateX(-1080px)';
+      makeTranslate(-1, getWidth); //sliderList.style.transform = 'translateX(-1080px)';
     } else {
       addCardsAfter(maxCards);
       makeTranslate(-1, getWidth);
@@ -144,13 +155,13 @@ sliderBtnRight.addEventListener('click', (evt) => {
           sliderList.removeChild(sliderList.firstChild);
         }
         sliderList.style.transition = 'all 0s ease-in-out';
-        sliderList.style.transform = 'translateX(-1080px)';
+        sliderList.style.transform = 'translateX(-' + getWidth + 'px)';
       }, 800);
     }
-
   }
 });
 
+// Listener: Translate cards to the left depending on the button click
 sliderBtnLeft.addEventListener('click', (evt) => {
   const curBreakpoint = getBp();
   const getWidth = param[curBreakpoint].width;
@@ -159,20 +170,18 @@ sliderBtnLeft.addEventListener('click', (evt) => {
   if (sliderList.childElementCount === maxCards) {
     addCardsBefore(maxCards);
     sliderList.style.transition = 'all 0s ease-in-out';
-    sliderList.style.transform = 'translateX(-1080px)';
+    makeTranslate(-1, getWidth);     //sliderList.style.transform = 'translateX(-1080px)';
     setTimeout(() => {
       sliderList.style.transition = 'all 0.8s ease-in-out';
       sliderList.style.transform = 'translateX(0)';
     }, 100);
-    //makeTranslate(1, getWidth);
   } else {
-
-    if (sliderList.childElementCount == maxCards * 2 && getTranslateX(sliderList) == -1080) {
+    if (sliderList.childElementCount == maxCards * 2 && getTranslateX(sliderList) == -getWidth) {
       sliderList.style.transform = 'translateX(0)';
     } else {
       addCardsBefore(maxCards);
       sliderList.style.transition = 'all 0s ease-in-out';
-      sliderList.style.transform = 'translateX(-1080px)';
+      makeTranslate(-1, getWidth); // sliderList.style.transform = 'translateX(-1080px)';
       setTimeout(() => {
         while (sliderList.childElementCount > maxCards * 2) {
           sliderList.removeChild(sliderList.lastChild);
@@ -182,14 +191,6 @@ sliderBtnLeft.addEventListener('click', (evt) => {
       }, 100);
     }
   }
-
 });
-
-
-//console.log(pets);
-//console.log(addCards(9));
-
-// Рамзер slider-wrapper
-//transform: translate3d(-1060px, 0px, 0px);
 
 //console.log('100 / 100\n1. Main соответствует макету при ширине экрана 1280px: +14\n2. Main соответствует макету при ширине экрана 768px: +14\n3. Main соответствует макету при ширине экрана 320px: +14\n4. Pets соответствует макету при ширине экрана 1280px: +6\n5. Pets соответствует макету при ширине экрана 768px: +6\n6. Pets соответствует макету при ширине экрана 320px: +6\n7. Не появляется горизонтальная полоса прокрутки +20\n8. Верстка резиновая +8\n9. Меню в хедере скрывается, появляется иконка бургер-меню +4\n10. Верстка обеих страниц валидна +8');

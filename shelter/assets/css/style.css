@@ -305,11 +305,6 @@ html {
   transform: translateX(0);
 }
 
-/* .slider-list.next {
-  transition: all 0.8s ease-in-out;
-  transform: translate3d(-100%, 0px, 0px);
-} */
-
 .our-friends-all .slider-list {
   gap: 30px 40px;
   max-width: 1200px;
@@ -793,7 +788,11 @@ html {
   }
 
   .slider-wrapper {
-    max-width: 630px;
+    max-width: 580px;
+  }
+
+  .slider-list {
+    gap: 40px;
   }
 
   .help-item {
@@ -881,12 +880,7 @@ html {
   }
 
   .slider-wrapper {
-    max-width: 580px;
     padding: 35px 0;
-  }
-
-  .slider-list {
-    gap: 40px;
   }
 
   .slider-item:hover {
