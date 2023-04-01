@@ -24,6 +24,16 @@ const param = {
               };
 let memOfWindowSize = window.innerWidth;
 
+// For Popup
+const popup = document.querySelector('.popup');
+const popupImage = popup.querySelector('.modal-image');
+const popupHeader = popup.querySelector('.modal-header');
+const popupSubgeader = popup.querySelector('.modal-subheader');
+const age = popup.querySelector('.modal-list-age');
+const inoculations = popup.querySelector('.modal-list-inoculations');
+const diseases = popup.querySelector('.modal-list-diseases');
+const parasites = popup.querySelector('.modal-list-parasites');
+
 // ----------- Sidebar -----------
 
 // Opening and closing sidebar
@@ -82,6 +92,20 @@ function createCard(name, link, id) {
   cardItemImage.setAttribute('alt', name);
   cardItemImage.setAttribute('src', link);
   cardItemName.textContent = name;
+  cardItem.addEventListener('click', (evt) => {
+    const petName = cardItem.querySelector('.slider-item-name').textContent;
+    const pet = pets.filter((item) => item.name === petName)[0];
+    popupImage.setAttribute('alt', pet.name);
+    popupImage.setAttribute('src', pet.img);
+    popupHeader.textContent = pet.name;
+    popupSubgeader.textContent = pet.type + ' - ' + pet.breed;
+    age.textContent = pet.age;
+    inoculations.textContent = pet.inoculations.join(', ');
+    diseases.textContent = pet.diseases.join(', ');
+    parasites.textContent = pet.parasites.join(', ');
+    popup.classList.add('opened');
+    body.classList.add('body-fixed');
+  });
   return cardItem;
 }
 
@@ -170,7 +194,7 @@ sliderBtnLeft.addEventListener('click', (evt) => {
   if (sliderList.childElementCount === maxCards) {
     addCardsBefore(maxCards);
     sliderList.style.transition = 'all 0s ease-in-out';
-    makeTranslate(-1, getWidth);     //sliderList.style.transform = 'translateX(-1080px)';
+    makeTranslate(-1, getWidth); //sliderList.style.transform = 'translateX(-1080px)';
     setTimeout(() => {
       sliderList.style.transition = 'all 0.8s ease-in-out';
       sliderList.style.transform = 'translateX(0)';
@@ -191,6 +215,16 @@ sliderBtnLeft.addEventListener('click', (evt) => {
       }, 100);
     }
   }
+});
+
+// ----------- Popup -----------
+
+// Listener: Close popup
+popup.addEventListener('click', (evt) => {
+  if (!evt.target.className.includes('modal')) {
+    popup.classList.remove('opened');
+    body.classList.remove('body-fixed');
+  };
 });
 
 //console.log('100 / 100\n1. Main соответствует макету при ширине экрана 1280px: +14\n2. Main соответствует макету при ширине экрана 768px: +14\n3. Main соответствует макету при ширине экрана 320px: +14\n4. Pets соответствует макету при ширине экрана 1280px: +6\n5. Pets соответствует макету при ширине экрана 768px: +6\n6. Pets соответствует макету при ширине экрана 320px: +6\n7. Не появляется горизонтальная полоса прокрутки +20\n8. Верстка резиновая +8\n9. Меню в хедере скрывается, появляется иконка бургер-меню +4\n10. Верстка обеих страниц валидна +8');
