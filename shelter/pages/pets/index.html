@@ -6,7 +6,7 @@
   <title>Our pets | Cozy House</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="icon" href="../../assets//icons/favicon.ico">
-  <script type="module" src="../../assets/js/script.js"></script>
+  <script type="module" src="../../assets/js/pets.js"></script>
 </head>
 <body class="body">
   <header class="header header-white">
@@ -107,11 +107,11 @@
             </ul>
           </div>
           <div class="slider-pagination">
-            <button disabled class="slider-btn" type="button">&lt;&lt;</button>
-            <button disabled class="slider-btn" type="button">&lt;</button>
+            <button disabled class="slider-btn slider-btn-start" type="button">&lt;&lt;</button>
+            <button disabled class="slider-btn slider-btn-prev" type="button">&lt;</button>
             <button class="slider-btn slider-btn-selected" type="button">1</button>
-            <button class="slider-btn" type="button">&gt;</button>
-            <button class="slider-btn" type="button">&gt;&gt;</button>
+            <button class="slider-btn slider-btn-next" type="button">&gt;</button>
+            <button class="slider-btn slider-btn-end" type="button">&gt;&gt;</button>
           </div>
         </div>
       </div>
@@ -172,5 +172,14 @@
     </div>
   </div>
   <div class="overlay"></div>
+  <template id="slider-item-template">
+    <li class="slider-item loaded">
+      <img class="slider-item-image" src="" alt="">
+      <div class="slider-item-description">
+        <p class="slider-item-name"></p>
+        <button class="button button-light" type="button">Learn more</button>
+      </div>
+    </li>
+  </template>
 </body>
 </html>

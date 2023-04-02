@@ -1,5 +1,3 @@
-//import pets from '../pets.json' assert {type: 'json'};
-
 const pets = await fetch('../../assets/pets.json').then(response => response.json());
 
 // For Sidebar
@@ -8,19 +6,23 @@ const nav = document.querySelector('.nav');
 const body = document.querySelector('.body');
 const overlay = document.querySelector('.overlay');
 
-// For Slider
+// For Pagination
 const sliderTemplate = document.querySelector('#slider-item-template').content;
 const sliderTemplateItem = sliderTemplate.querySelector('.slider-item');
 const sliderWrapper = document.querySelector('.slider-wrapper');
 let sliderList = document.querySelector('.slider-list');
-const sliderBtnRight = document.querySelector('.slider-btn-right');
-const sliderBtnLeft = document.querySelector('.slider-btn-left');
+const sliderBtnStart = document.querySelector('.slider-btn-start');
+const sliderBtnPrev = document.querySelector('.slider-btn-prev');
+const sliderBtnNext = document.querySelector('.slider-btn-next');
+const sliderBtnEnd = document.querySelector('.slider-btn-end');
+const sliderBtnNum = document.querySelector('.slider-btn-selected');
+let memOfpage = 0;
 let memOfCards = [];
-let newCards = [];
+let maxPages = 0;
 const param = {
-                1280: {maxCards: 3, width: 1080},
-                768: {maxCards: 2, width: 620},
-                320: {maxCards: 1, width: 310}
+                1280: {maxCards: 8, width: 1080},
+                768: {maxCards: 6, width: 620},
+                320: {maxCards: 3, width: 310}
               };
 let memOfWindowSize = window.innerWidth;
 
@@ -52,6 +54,14 @@ overlay.addEventListener('click', evt => {
   toggleSidebar();
 });
 
+// ----------- Pagination -----------
+
+// Initial
+removeAllCards();
+memOfCards = generateAllCards(param[getBp()].maxCards);
+addCardsAfter(param[getBp()].maxCards, memOfpage);
+maxPages = 48 / param[getBp()].maxCards - 1;
+
 // Getting array of random unique numbers
 function arrOfRandNum(size, exceptions) {
   if(!exceptions) exceptions = [];
@@ -67,19 +77,25 @@ function arrOfRandNum(size, exceptions) {
   return result;
 }
 
-// ----------- Slider -----------
-
-// Initial
-removeAllCards();
-addCardsAfter(param[getBp()].maxCards);
+// Generating array of random arrays (48 cards)
+function generateAllCards(maxCardsOnPage) {
+  const result = [];
+  for (let i = 0; i < 48; i++) {
+    result.push(arrOfRandNum(maxCardsOnPage));
+  }
+  return result;
+}
 
 // Listener: Changing initial set of cards depending on the screen width
 window.addEventListener('resize', function(evt) {
   if (window.innerWidth !== memOfWindowSize) {
-    sliderList.style.transform = 'translateX(0)';
     removeAllCards();
-    addCardsAfter(param[getBp()].maxCards);
+    addCardsAfter(param[getBp()].maxCards, 0);
     memOfWindowSize = window.innerWidth;
+    maxPages = 48 / param[getBp()].maxCards - 1;
+    memOfpage = 0;
+    changeBtnsConditions();
+    sliderBtnNum.innerText = memOfpage + 1;
   }
 });
 
@@ -110,9 +126,8 @@ function createCard(name, link, id) {
 }
 
 // Creating cards
-function createCards(num) {
-  memOfCards.length == 0 ? memOfCards = arrOfRandNum(num) : memOfCards = arrOfRandNum(num, memOfCards);
-  return memOfCards.map((item) => {
+function createCards(num, pos) {
+  return memOfCards[pos].map((item) => {
     return createCard(pets[item].name, pets[item].img, item);
   });
 }
@@ -125,24 +140,10 @@ function removeAllCards() {
 }
 
 // Adding cards to DOM after another
-function addCardsAfter(num) {
-  createCards(num).forEach(item => {
+function addCardsAfter(num, pos) {
+  createCards(num, pos).forEach(item => {
     sliderList.append(item);
   });
-}
-
-// Adding cards to DOM before another
-function addCardsBefore(num) {
-  createCards(num).forEach(item => {
-    sliderList.prepend(item);
-  });
-}
-
-// Getting current value of translateX
-function getTranslateX(element) {
-  const style = window.getComputedStyle(element);
-  const matrix = new DOMMatrixReadOnly(style.transform);
-  return matrix.m41;
 }
 
 // Getting breakpoint of window
@@ -152,69 +153,58 @@ function getBp() {
   if(window.innerWidth >= 320 && window.innerWidth < 768) return 320;
 }
 
-// Making translation
-function makeTranslate(sign, getWidth) {
-  const curPos = getTranslateX(sliderList);
-  const setPos = sign * getWidth + curPos;
-  sliderList.style.transform = 'translateX(' + setPos + 'px)';
+// Changing conditions of buttons
+function changeBtnsConditions () {
+  if (memOfpage == maxPages) {
+    sliderBtnEnd.setAttribute('disabled', 'disabled');
+    sliderBtnNext.setAttribute('disabled', 'disabled');
+    sliderBtnStart.removeAttribute('disabled', 'disabled');
+    sliderBtnPrev.removeAttribute('disabled', 'disabled');
+  }
+  if (memOfpage > 0 && memOfpage < maxPages) {
+    sliderBtnEnd.removeAttribute('disabled', 'disabled');
+    sliderBtnNext.removeAttribute('disabled', 'disabled');
+    sliderBtnStart.removeAttribute('disabled', 'disabled');
+    sliderBtnPrev.removeAttribute('disabled', 'disabled');
+  }
+  if (memOfpage == 0) {
+    sliderBtnStart.setAttribute('disabled', 'disabled');
+    sliderBtnPrev.setAttribute('disabled', 'disabled');
+    sliderBtnEnd.removeAttribute('disabled', 'disabled');
+    sliderBtnNext.removeAttribute('disabled', 'disabled');
+  }
 }
 
-// Listener: Translate cards to the right depending on the button click
-sliderBtnRight.addEventListener('click', (evt) => {
-  const curBreakpoint = getBp();
-  const getWidth = param[curBreakpoint].width;
-  const maxCards = param[curBreakpoint].maxCards;
-  sliderList.style.transition = 'all 0.8s ease-in-out';
-  if (sliderList.childElementCount === maxCards) {
-    addCardsAfter(maxCards);
-    makeTranslate(-1, getWidth);
-  } else {
-    if (sliderList.childElementCount == maxCards * 2 && getTranslateX(sliderList) == 0) {
-      makeTranslate(-1, getWidth); //sliderList.style.transform = 'translateX(-1080px)';
-    } else {
-      addCardsAfter(maxCards);
-      makeTranslate(-1, getWidth);
-      setTimeout(() => {
-        while (sliderList.childElementCount > maxCards * 2) {
-          sliderList.removeChild(sliderList.firstChild);
-        }
-        sliderList.style.transition = 'all 0s ease-in-out';
-        sliderList.style.transform = 'translateX(-' + getWidth + 'px)';
-      }, 800);
-    }
-  }
+// Redrawing cards and buttons
+function redrawCardsAndBtns() {
+  removeAllCards();
+  changeBtnsConditions();
+  addCardsAfter(param[getBp()].maxCards, memOfpage);
+  sliderBtnNum.innerText = memOfpage + 1;
+}
+
+// Listener: Actions after next button click
+sliderBtnNext.addEventListener('click', (evt) => {
+  memOfpage++;
+  redrawCardsAndBtns();
 });
 
-// Listener: Translate cards to the left depending on the button click
-sliderBtnLeft.addEventListener('click', (evt) => {
-  const curBreakpoint = getBp();
-  const getWidth = param[curBreakpoint].width;
-  const maxCards = param[curBreakpoint].maxCards;
-  sliderList.style.transition = 'all 0.8s ease-in-out';
-  if (sliderList.childElementCount === maxCards) {
-    addCardsBefore(maxCards);
-    sliderList.style.transition = 'all 0s ease-in-out';
-    makeTranslate(-1, getWidth); //sliderList.style.transform = 'translateX(-1080px)';
-    setTimeout(() => {
-      sliderList.style.transition = 'all 0.8s ease-in-out';
-      sliderList.style.transform = 'translateX(0)';
-    }, 100);
-  } else {
-    if (sliderList.childElementCount == maxCards * 2 && getTranslateX(sliderList) == -getWidth) {
-      sliderList.style.transform = 'translateX(0)';
-    } else {
-      addCardsBefore(maxCards);
-      sliderList.style.transition = 'all 0s ease-in-out';
-      makeTranslate(-1, getWidth); // sliderList.style.transform = 'translateX(-1080px)';
-      setTimeout(() => {
-        while (sliderList.childElementCount > maxCards * 2) {
-          sliderList.removeChild(sliderList.lastChild);
-        }
-        sliderList.style.transition = 'all 0.8s ease-in-out';
-        makeTranslate(1, getWidth);
-      }, 100);
-    }
-  }
+// Listener: Actions after previos button click
+sliderBtnPrev.addEventListener('click', (evt) => {
+  memOfpage--;
+  redrawCardsAndBtns();
+});
+
+// Listener: Actions after end button click
+sliderBtnEnd.addEventListener('click', (evt) => {
+  memOfpage = maxPages;
+  redrawCardsAndBtns();
+});
+
+// Listener: Actions after start button click
+sliderBtnStart.addEventListener('click', (evt) => {
+  memOfpage = 0;
+  redrawCardsAndBtns();
 });
 
 // ----------- Popup -----------
