@@ -44,7 +44,7 @@ html {
 }
 
 .header-logo {
-  width: 190px;
+  width: 200px;
   height: 60px;
   text-decoration: none;
 }
@@ -1224,7 +1224,7 @@ html {
   }
 
   .footer-list-text.fix {
-    min-width: 305px;
+    min-width: 308px;
   }
 
   .our-friends-all .our-friends-container {
