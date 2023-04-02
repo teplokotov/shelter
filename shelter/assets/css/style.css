@@ -44,7 +44,7 @@ html {
 }
 
 .header-logo {
-  width: 186px;
+  width: 190px;
   height: 60px;
   text-decoration: none;
 }
@@ -1031,7 +1031,7 @@ html {
   }
 
   .not-only-heading {
-    max-width: 200px;
+    max-width: 210px;
     font-size: 25px;
     text-align: center;
     margin: 0 auto;
@@ -1126,7 +1126,7 @@ html {
 
   .help-heading {
     font-size: 25px;
-    max-width: 230px;
+    max-width: 240px;
   }
 
   .help-list {
@@ -1168,7 +1168,7 @@ html {
 
   .in-addition-heading {
     font-size: 25px;
-    max-width: 220px;
+    max-width: 230px;
     margin: 0 auto;
   }
 
@@ -1221,6 +1221,10 @@ html {
   .footer-list-center {
     padding-top: 40px;
     gap: 39px;
+  }
+
+  .footer-list-text.fix {
+    min-width: 305px;
   }
 
   .our-friends-all .our-friends-container {
