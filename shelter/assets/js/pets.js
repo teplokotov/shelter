@@ -89,13 +89,12 @@ function generateAllCards(maxCardsOnPage) {
 // Listener: Changing initial set of cards depending on the screen width
 window.addEventListener('resize', function(evt) {
   if (window.innerWidth !== memOfWindowSize) {
-    removeAllCards();
-    addCardsAfter(param[getBp()].maxCards, 0);
+    const maxCards = param[getBp()].maxCards;
+    memOfCards = generateAllCards(maxCards);
     memOfWindowSize = window.innerWidth;
-    maxPages = 48 / param[getBp()].maxCards - 1;
+    maxPages = 48 / maxCards - 1;
     memOfpage = 0;
-    changeBtnsConditions();
-    sliderBtnNum.innerText = memOfpage + 1;
+    redrawCardsAndBtns();
   }
 });
 
