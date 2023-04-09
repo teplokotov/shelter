@@ -1328,7 +1328,7 @@ html {
 
 }
 
-@media (max-height: 490px) and (max-width: 768px) {
+@media (max-height: 490px) and (width < 768px) {
 
   .nav {
     padding-top: 90px;
