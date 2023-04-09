@@ -5,6 +5,7 @@ const toggleBtn = document.querySelector('.toggle-btn');
 const nav = document.querySelector('.nav');
 const body = document.querySelector('.body');
 const overlay = document.querySelector('.overlay');
+const navItems = document.querySelectorAll('.nav-item');
 
 // For Slider
 const sliderTemplate = document.querySelector('#slider-item-template').content;
@@ -48,6 +49,12 @@ toggleBtn.addEventListener('click', evt => {
 
 overlay.addEventListener('click', evt => {
   toggleSidebar();
+});
+
+navItems.forEach(function (navItem) {
+  navItem.addEventListener('click', function (evt) {
+    if (window.innerWidth < 768) toggleSidebar();
+  });
 });
 
 // ----------- Slider -----------
@@ -225,6 +232,4 @@ popup.addEventListener('click', (evt) => {
   };
 });
 
-console.log('Part 1: 100 / 100\n1. Main: Проверка верстки +7\n2. Main: Вёрстка соответствует макету +35\n3. Main: Требования к css +6\n4. Main: Интерактивность элементов +12\n5. Pets: Проверка верстки +7\n6. Pets: Вёрстка соответствует макету +15\n7. Pets: Требования к css +4\n8. Pets: Интерактивность элементов +14\n');
-console.log('Part 2: 100 / 100\n1. Main соответствует макету при ширине экрана 1280px: +14\n2. Main соответствует макету при ширине экрана 768px: +14\n3. Main соответствует макету при ширине экрана 320px: +14\n4. Pets соответствует макету при ширине экрана 1280px: +6\n5. Pets соответствует макету при ширине экрана 768px: +6\n6. Pets соответствует макету при ширине экрана 320px: +6\n7. Не появляется горизонтальная полоса прокрутки +20\n8. Верстка резиновая +8\n9. Меню в хедере скрывается, появляется иконка бургер-меню +4\n10. Верстка обеих страниц валидна +8');
 console.log('Part 3: 110 / 110\n1. Реализация burger menu на обеих страницах +26\n2. Реализация слайдера-карусели на странице Main +36\n3. Реализация пагинации на странице Pets +36\n4. Реализация попап на обеих страницах +12');
